@@ -8,7 +8,7 @@ import { alertReceivingNumbers } from './lists/alertReceivingNumbers'
 import { connectDB } from './services/dbConn'
 import { NewsObject } from './models/NewsObject'
 import Utils from './util/utils'
-import SMSController from './controllers/SMSController'
+import SMSController from './controllers/SMScontroller'
 const ScrapedNews = require('./models/newsObjectSchema')
 const LatestNews = require('./models/latestNewsSchema')//import mongoose from 'mongoose'
 //const mongoose = require('mongoose')

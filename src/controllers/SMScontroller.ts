@@ -1,7 +1,5 @@
-import SendSMS from '../services/SendSMS'
+import SendSMS from '../services/sendSMS'
 import Utils from '../util/utils'
-
-const utf8 = require('utf8');
 
 export default class SMSController {
     

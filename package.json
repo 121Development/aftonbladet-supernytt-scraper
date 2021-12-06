@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/test-scrape.ts"
+    "dev": "nodemon src/test-scrape.ts",
+    "build": "tsc && npm run start",
+    "start": "node dist/test-scrape.js",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/test-scrape.js",
+    "watch-ts": "tsc -w",
+    "deploy": "git add . % git commit -m Heroku && git push heroku master"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +27,6 @@
   },
   "devDependencies": {
     "@types/puppeteer": "^5.4.4"
-  }
+  },
+  "engines": { "node ": "14.17.0"}
 }
