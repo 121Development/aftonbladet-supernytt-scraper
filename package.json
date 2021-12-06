@@ -1,0 +1,25 @@
+{
+  "name": "test-scrape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/test-scrape.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.2.1",
+    "mongoose": "^6.0.14",
+    "nodemon": "^2.0.15",
+    "puppeteer": "^11.0.0",
+    "read-excel-file": "^5.2.25",
+    "ts-node": "^10.4.0",
+    "utf8": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^5.4.4"
+  }
+}
