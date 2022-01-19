@@ -14,7 +14,7 @@ async function createPage(browser: { newPage: () => any; }, url: any) {
     await preparePageForTests(page);
     await page.goto(url, { waitUntil: 'networkidle2'})
     await page.waitForSelector('.news-flow')
-    console.log('page created')
+    console.log('[i] Page created')
     return page
     }
 

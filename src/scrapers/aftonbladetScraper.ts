@@ -6,11 +6,9 @@ import { createPage } from '../controllers/pageController'
 
 const scrapeAftonbladet = async (browser: any) => {
 
-    console.log("scraping Aftonbladet")
-
     const urlAftonbladet = 'https://live.aftonbladet.se/supernytt'
     const page = await createPage(browser, urlAftonbladet)
-
+    console.log("[!] Scraping Aftonbladet")
     const aftonbladetPaths = {
         titleEle: '.news-flow section article h2',
         bodyEle: '.news-flow section article div',
@@ -19,6 +17,7 @@ const scrapeAftonbladet = async (browser: any) => {
         authorEle: '.news-flow section article div span',
         tagEle: '//*[@id="root"]/div/div/section/div/div/section/article[1]/ul/li/a'
     }
+    
 
     function encode_utf8(s: string | number | boolean) {
         return unescape(encodeURIComponent(s));
@@ -27,11 +26,12 @@ const scrapeAftonbladet = async (browser: any) => {
     function decode_utf8(s: string) {
         return decodeURIComponent(escape(s));
       }
+
     //******        ---------------        *********************' */
     try{
 
         let title = await page.$eval(aftonbladetPaths.titleEle, (uiElement: any) => uiElement.innerText )   
-        let body = await page.$eval(aftonbladetPaths.bodyEle, (uiElement: any) => uiElement.nextElementSibling.nextElementSibling.textContent) 
+        let body = await page.$eval(aftonbladetPaths.bodyEle, (uiElement: any) => uiElement.nextElementSibling.nextElementSibling.textContent.replaceAll('.', '. ').replaceAll(':', ': ').replaceAll('  ', ' ')) 
         let pUrl = page.url()
         let source = pUrl.split('//').pop().split('/')[0]
         let link = await page.$eval(aftonbladetPaths.linkEle, (uiElement: any) => 'https://live.aftonbladet.se'+uiElement.getAttribute('href'))
@@ -42,15 +42,17 @@ const scrapeAftonbladet = async (browser: any) => {
         let locAtr = await locX.getProperty('href')
         //let locFull = await locAtr.jsonValue().decode()
         let locFull = await locAtr.jsonValue()
-        let tag = decode_utf8(locFull.split('/').pop())
+        //let locFull = JSON.stringify(locFull2)
+        let tag = decodeURI(locFull.split('/').pop())
+
         
         let keywords = undefined
         let locations = undefined
 
         let no = new NewsObject(title, body, source, link, time, date, author, tag, keywords, locations) 
-        
+
         console.log(no)
-        await page.close()
+        page.close()
         return no
     } catch (e) {
         console.log('error in evaluating page ' + e)
