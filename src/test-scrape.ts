@@ -10,7 +10,7 @@ import { NewsObject } from "./models/NewsObject";
 import Utils from "./util/utils";
 import SMSController from "./controllers/SMScontroller";
 const ScrapedNews = require("./models/newsObjectSchema");
-const LatestNews = require("./models/latestNewsSchema"); //import mongoose from 'mongoose'
+const LatestNews = require("./models/latestNewsSchema"); //import mongoose from 'mongoos :'
 //const mongoose = require('mongoose')
 import * as mongoose from "mongoose";
 const express = require("express");
